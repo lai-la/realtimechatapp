@@ -1,14 +1,15 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
+from chat.forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login
 
 # Create your views here.
+
 def index(request):
     return render(request, 'chat/index.html')
 
 def register(request): 
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
 
         if form.is_valid():
             form.save()
@@ -18,6 +19,6 @@ def register(request):
             login(request, user)
             return redirect('index')
     else:
-        form = UserCreationForm()
+        form = CustomUserCreationForm()
     context = {'form' : form}
     return render(request, 'registration/register.html', context)
