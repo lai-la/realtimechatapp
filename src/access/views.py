@@ -2,10 +2,6 @@ from django.shortcuts import render, redirect
 from access.forms import CustomUserCreationForm
 from django.contrib.auth import authenticate, login
 
-# Create your views here.
-
-def index(request):
-    return render(request, 'access/index.html')
 
 def register(request): 
     if request.method == 'POST':
@@ -17,7 +13,7 @@ def register(request):
             password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect('index')
+            return redirect('/')
     else:
         form = CustomUserCreationForm()
     context = {'form' : form}
