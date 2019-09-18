@@ -1,3 +1,11 @@
+#login-column {
+  background-color: white;
+  padding-block: 5em;
+
+}
+
+
+
 body {
     display: flex;
     align-items: center;

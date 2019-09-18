@@ -1,26 +1,65 @@
+{# Load the tag library #}
+{% load bootstrap4 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>Login</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}" />
     </head>
     <body>
-        {% if form.errors %}
-        <p>Incorrect username or password. Please try again.</p>
-        {% endif %}
 
-        {% if next %}
-        <p> Access denied. </p>
-        {% endif %}
+        <div class='container login'>
+            <div class="row justify-content-center">
+                <div id="login-column" class="col col-md-6 col-sm-12 align-self-center jumbotron">
+                    <div id="login-box" class="col-md-12">
+                        <div class="login-form">
+                            {% if form.errors %}
+                            <div class="alert alert-danger" role="alert">
+                                <p>Incorrect username or password. Please try again.</p>
+                            </div>
+                            {% endif %}
+                    
+                            {% if next %}
+                            <div class="alert alert-danger" role="alert">
+                                <p> Access denied. </p>
+                            </div>
+                            {% endif %}
+                            
+                            <form id="login-form" class="form" method="POST" action="{% url 'login' %}">
+                                {% csrf_token %}
+                                <h1 class="text-center text-secondary">Login</h1>
+                                <div class="form-group">
+                                    <p>Username:</p>
+                                    <p>{{ form.username }}</p>
+                                </div>
+                                <div class="form-group">
+                                    <p>Password:</p>
+                                    <p>{{ form.password }}</p>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit"  class="btn btn-secondary" value="login">
+                                <input type="hidden" name="next" value="{{ next }}">
+                            </div>
+                            <div id="register-link" class="text-left">
+                                <a class="text-secondary" href="/register">Register here</a>
+                            </div>
+                            </form>
+                        </div>
+                    </div>   
+                </div>
+            </div>
+        </div>
 
-        <form method="POST" action="{% url 'login' %}">
-            {% csrf_token %}
-            <p>Username: {{ form.username }}</p>
-            <p>Password: {{ form.password }}</p>
-
-            <p><input type="submit" = value="login"></p>
-            <input type="hidden" name="next" value="{{ next }}">
-
-        </form>
     </body>
 </html>
