@@ -1,20 +1,49 @@
+{# Load the tag library #}
+{% load bootstrap4 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Register</title>
-</head>
-<body>
-    <h1>Registration Page</h1>
-    <form method="POST" action="{% url 'register' %}">
-        {% csrf_token %}
-        {% if form.errors %}
-        <p>Errors in form</p>
-        {% endif%}
-
-        {{ form }}
-
-        <input type="submit" value="Register">
-    </form>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Register</title>
+    </head>
+    <body>
+        <div class='container register'>
+            <div class="row justify-content-center">
+                <div id="register-column" class="col col-md-6 col-sm-12 align-self-center jumbotron">
+                    <div id="registration-box" class="col-md-12">
+                        <div class="registration-form">
+                            <h3>Register</h3>
+                            <form method="POST" action="{% url 'register' %}">
+                                {% csrf_token %}
+                                {% if form.errors %}
+                                <div class="alert alert-danger" role="alert">
+                                    <p>Please make sure to enter correct values.</p>
+                                </div>
+                                {% endif%}
+            
+                                <p>{{ form.username }}</p>
+                                <p>{{ form.first_name }}</p>
+                                <p>{{ form.last_name }}</p>
+                                <p>{{ form.email }}</p>
+                                <p>{{ form.password1 }}</p>
+                                <p>{{ form.password2 }}</p>
+            
+                                <input type="submit" value="Register">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
