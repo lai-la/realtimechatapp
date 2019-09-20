@@ -1,10 +1,14 @@
-body {
-    display: flex;
-    align-items: stretch;
-    justify-content: center;
-    min-height: 100vh;
 
-  }
+.room {
+  height: 70%;
+  max-height: 70%;
+  margin-top: 5em;
+}
+
+#chat-window {
+  overflow-y: scroll;
+  margin: 10px;
+}
 
 #user-list {
     background-color: #243140;
@@ -13,14 +17,40 @@ body {
   
   #chat-box {
     background: lightblue;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   }
 
-  #chat-window {
-    padding: 0ex;
+
+  .message-self {
+    text-align: right
   }
+
+  .message-self #author {
+    text-align: right;
+    margin: 10px 0;
+  }
+
+  .message-self #message {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+  }
+
+  .message-reply #message{
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    border-color: #ccc;
+    background-color: #ddd;
+  }
+
+  #author {
+    font-weight: bold;
+  }
+
 
   #login-column {
     background-color: white;

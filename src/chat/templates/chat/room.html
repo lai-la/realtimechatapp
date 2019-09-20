@@ -18,17 +18,46 @@
     <link rel="stylesheet" href="{% static 'style.css' %}" />
 </head>
 <body>
-    <div class="contaier room"></div>
-        <div class="row chat-room">
-            <div class="col-sm-3" id="user-list">
-                <p>Connected Users:</p>
+    <div class="container room">
+        <div class="row h-100 mh-100 chat-room justify-content-center">
+            <div class="col-sm-3 mh-100" id="user-list">
+                <p>You are connected as:</p>
+                <p>{{ username }}</p>
+                <div id="logout-link" class="text-right">
+                    <a class="text-secondary" href="/accounts/logout">Logout</a>
+                </div>
 
             </div>
-            <div class="col-sm-9" id="chat-box">
-                <div id="chat-window">
-                    <textarea id="chat-log" class="form-control" cols="100" rows="20"></textarea><br/>
+            <div class="col-sm-9 d-flex mh-100 flex-column" id="chat-box">
+                <div class="p-2 mb-auto d-flex flex-column" id="chat-window">
+
+                    <!--div class="d-flex p-2 flex-row message-reply">
+                        <div class="p-2 d-flex flex-column">
+                            <div class="p-2" id="author">
+                                Test-Author SENTIMENT 
+                            </div>
+                            <div class="p-2" id="message">
+                                Test-message
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex p-2 flex-row message-self justify-content-end">
+                        <div class="p-2 d-flex flex-column">
+                            <div class="p-2" id="author">
+                                Test-Author SENTIMENT 
+                            </div>
+                            <div class="p-2" id="message">
+                                Test-message
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
+                            </div>
+                        </div>
+                    </div-->
+
                 </div>
-                <div class="input-group mb-3">
+                <div class="input-group p-2 mt-auto">
                     <input id="chat-message-input" type="text" class="form-control" placeholder="Type your message here..."><br/>
                     <div class="input-group-append">
                         <input id="chat-message-submit" class="btn btn-secondary" type="button" value="Send"/>
@@ -63,8 +92,27 @@
                 sentiment='☹'
                 break;
         }
+        let message_class;
+        if (author===username){
+            message_class = 'message-self justify-content-end';
+        }else{
+            message_class = 'message-reply';
+        }
 
-        document.querySelector('#chat-log').value += (author + ':\n' + message + '\n'+ sentiment + '\n\n');
+        chatWindow = document.querySelector('#chat-window');
+        chatWindow.innerHTML += 
+            '<div class="d-flex p-2 flex-row ' + message_class + '">' +
+                '<div class="p-2 d-flex flex-column">' +
+                    '<div class="p-2" id="author">' +
+                        author + ' ' + sentiment + 
+                    '</div>' +
+                    '<div class="p-2" id="message">' +
+                        message +
+                    '</div>' +
+                '</div>' +
+            '</div><br/>'
+            ;
+        chatWindow.scrollTop = chatWindow.scrollHeight; 
     };
 
     chatSocket.onclose = function(e) {
