@@ -1,7 +1,8 @@
 # realtimechatapp
-This is my first ever Project working with Django and docker, trying to build a single channel realtime chat app.
+This is my first ever Project working with Django and Docker.
+The goal is to build a single channel realtime chat app, that performs sentiment analysis on the messages.
 
-### Setting up databases in docker
+### Setting up databases in Docker
 1. Postgres 
 ```
 $ sudo docker run --rm --name postgres -e POSTGRES_PASSWORD=docker -d -p 5432:5432 
@@ -12,6 +13,10 @@ $ sudo docker run --rm --name postgres -e POSTGRES_PASSWORD=docker -d -p 5432:54
 $ docker run -p 6379:6379 -d redis:2.8`
 ```
 
+### Install Requirements
+`pip install -r requirements.txt`
+
+
 ### To use sentiment-analysis
 register for a free account on https://monkeylearn.com/pricing/
 then add `chat/sentiment_analysis_config.py` to the project and include your API Key 
@@ -20,8 +25,8 @@ then add `chat/sentiment_analysis_config.py` to the project and include your API
 
 ### Commands to get the app started
 
-`$ python manage.py makemigrations`
+`python manage.py makemigrations`
 
-`$ python manage.py migrate`
+`python manage.py migrate`
 
-`$ python manage.py runserver`
+`python manage.py runserver`

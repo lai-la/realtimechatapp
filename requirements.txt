@@ -1,0 +1,6 @@
+channels
+channels-redis
+Django
+django-bootstrap4
+monkeylearn
+psycopg2
