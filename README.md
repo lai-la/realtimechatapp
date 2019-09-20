@@ -12,6 +12,11 @@ $ sudo docker run --rm --name postgres -e POSTGRES_PASSWORD=docker -d -p 5432:54
 $ docker run -p 6379:6379 -d redis:2.8`
 ```
 
+### To use sentiment-analysis
+register for a free account on https://monkeylearn.com/pricing/
+then add `chat/sentiment_analysis_config.py` to the project and include your API Key 
+(`API_KEY_MONKEYLEARN = '<your API key>'`).
+
 
 ### Commands to get the app started
 
