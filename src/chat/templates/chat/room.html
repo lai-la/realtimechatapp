@@ -52,6 +52,17 @@
         var message = data['message'];
         var author = data['author'];
         var sentiment = data['sentiment']
+        switch(sentiment){
+            case 'Neutral':
+                sentiment = '😐'
+                break;
+            case 'Positive':
+                sentiment='🙂'
+                break;
+            case 'Negative':
+                sentiment='☹'
+                break;
+        }
 
         document.querySelector('#chat-log').value += (author + ':\n' + message + '\n'+ sentiment + '\n\n');
     };
