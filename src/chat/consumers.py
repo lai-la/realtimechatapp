@@ -2,6 +2,7 @@
 from asgiref.sync import async_to_sync
 from channels.generic.websocket import WebsocketConsumer
 import json
+from .sentiment_analysis import request_sentiment
 
 class ChatConsumer(WebsocketConsumer):
     def connect(self):
@@ -28,6 +29,7 @@ class ChatConsumer(WebsocketConsumer):
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
         author = text_data_json['author']
+        sentiment = request_sentiment(message)
 
         # Send message to room group
         async_to_sync(self.channel_layer.group_send)(
@@ -35,7 +37,8 @@ class ChatConsumer(WebsocketConsumer):
             {
                 'type': 'chat_message',
                 'message': message,
-                'author': author
+                'author': author,
+                'sentiment': sentiment
 
             }
         )
@@ -44,9 +47,11 @@ class ChatConsumer(WebsocketConsumer):
     def chat_message(self, event):
         message = event['message']
         author = event['author']
+        sentiment = event['sentiment']
 
         # Send message to WebSocket
         self.send(text_data= json.dumps({
             'message': message,
-            'author': author
+            'author': author,
+            'sentiment': sentiment
         }))

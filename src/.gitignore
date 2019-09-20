@@ -1,5 +1,9 @@
+# contains API Key for monkeylearn
+sentiment_analysis_config.py
+
 .vscode/
 */migrations/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

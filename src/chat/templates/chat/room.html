@@ -51,8 +51,9 @@
         var data = JSON.parse(e.data);
         var message = data['message'];
         var author = data['author'];
+        var sentiment = data['sentiment']
 
-        document.querySelector('#chat-log').value += (author + ':\n' + message + '\n\n');
+        document.querySelector('#chat-log').value += (author + ':\n' + message + '\n'+ sentiment + '\n\n');
     };
 
     chatSocket.onclose = function(e) {
