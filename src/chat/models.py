@@ -11,5 +11,5 @@ class Message(models.Model):
     def __str__(self):
         return self.author.username
 
-    def last_20_messages():
-        return Message.objects.order_by('-timestamp').all()[:20]
+ #   def last_20_messages():
+ #       return Message.objects.order_by('-timestamp').all()[:20]
