@@ -2,7 +2,7 @@
 This is my first ever Project working with Django and Docker.
 The goal is to build a single channel realtime chat app, that performs sentiment analysis on the messages.
 
-You can see the deployed app here: https://infinite-inlet-33930.herokuapp.com/
+You can see the deployed app here: https://morning-lowlands-66194.herokuapp.com/
 
 ### Setting up databases in Docker
 1. Postgres 
