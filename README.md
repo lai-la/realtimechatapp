@@ -5,12 +5,11 @@ The goal is to build a single channel realtime chat app, that performs sentiment
 ### Setting up databases in Docker
 1. Postgres 
 ```
-$ sudo docker run --rm --name postgres -e POSTGRES_PASSWORD=docker -d -p 5432:5432 
--v $HOME/postgres-data:/var/libb/postgresql/data postgres
+$ docker run --rm --name postgres -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -v $HOME/postgres-data:/var/libb/postgresql/data postgres
 ```
 2. Redis 
 ```
-$ docker run -p 6379:6379 -d redis:2.8`
+$ docker run --rm --name redis -p 6379:6379 -d redis:2.8`
 ```
 
 ### Install Requirements
